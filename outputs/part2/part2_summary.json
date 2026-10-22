@@ -1,0 +1,695 @@
+{
+  "window": {
+    "label": "minimum relaxation (illumination band widened by 3.41 deg)",
+    "station": "Wellington",
+    "start_utc": "2026-07-17T22:53:08.266Z",
+    "end_utc": "2026-07-17T23:02:52.211Z",
+    "duration_s": 583.9453125,
+    "band_widening_deg": 3.41
+  },
+  "n_rad_s": 0.0010948236928858023,
+  "initial_state_lvlh": [
+    -80.0,
+    120.0,
+    20.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "sun_lvlh_at_window_start": [
+    0.17301,
+    0.88866,
+    -0.42467
+  ],
+  "sun_lvlh_at_window_end": [
+    0.66858,
+    0.61045,
+    -0.42468
+  ],
+  "timeline": {
+    "T1": 235,
+    "T2": 122,
+    "T_hold": 30.0,
+    "rho_entry": 25.0,
+    "rho_hold": 10.0,
+    "v_final": 0.06,
+    "v_contact": 0.06,
+    "d_brake": 0.0
+  },
+  "timeline_choice": {
+    "T1": 234.775390625,
+    "T2": 122.50325520833331,
+    "dv_total": 1.1848156897559838,
+    "B1": 0.557386833833408,
+    "B2": 0.4227246884110335,
+    "B3": 0.12280769365382618,
+    "miss_B2": 10.024005877356547,
+    "t_contact": 553.9453125
+  },
+  "selected_strategy": "vbar_plus",
+  "sun_optimal": {
+    "sun_optimal_axis": [
+      0.11575980357042309,
+      0.3562720417153322,
+      -0.9271838545667874
+    ],
+    "sun_optimal_margin_deg": 13.88330533591472
+  },
+  "burns": [
+    {
+      "burn_id": "B1",
+      "epoch_utc": "2026-07-17T22:53:08.266Z",
+      "t_from_window_start_s": 0.0,
+      "dv_x_radial_mps": 0.457484,
+      "dv_y_alongtrack_mps": -0.306458,
+      "dv_z_crosstrack_mps": -0.08322,
+      "dv_magnitude_mps": 0.556897,
+      "pos_x_m": -80.0,
+      "pos_y_m": 120.0,
+      "pos_z_m": 20.0,
+      "range_m": 145.602,
+      "v_before_mps": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "v_after_mps": [
+        0.45748,
+        -0.30646,
+        -0.08322
+      ],
+      "purpose": "departure from initial point toward corridor entry"
+    },
+    {
+      "burn_id": "MCC1",
+      "epoch_utc": "2026-07-17T22:55:05.766Z",
+      "t_from_window_start_s": 117.5,
+      "dv_x_radial_mps": 0.0,
+      "dv_y_alongtrack_mps": 0.0,
+      "dv_z_crosstrack_mps": 0.0,
+      "dv_magnitude_mps": 0.0,
+      "pos_x_m": NaN,
+      "pos_y_m": NaN,
+      "pos_z_m": NaN,
+      "range_m": NaN,
+      "v_before_mps": NaN,
+      "v_after_mps": NaN,
+      "purpose": "mid-course correction slot: nominal 0, re-targets WP1 from the navigated state (Monte Carlo p99 58.6 mm/s)"
+    },
+    {
+      "burn_id": "B2",
+      "epoch_utc": "2026-07-17T22:57:03.266Z",
+      "t_from_window_start_s": 235.0,
+      "dv_x_radial_mps": -0.203258,
+      "dv_y_alongtrack_mps": 0.359407,
+      "dv_z_crosstrack_mps": 0.086053,
+      "dv_magnitude_mps": 0.421773,
+      "pos_x_m": 0.0,
+      "pos_y_m": 25.0,
+      "pos_z_m": 0.0,
+      "range_m": 25.0,
+      "v_before_mps": [
+        0.21961,
+        -0.48163,
+        -0.08605
+      ],
+      "v_after_mps": [
+        0.01635,
+        -0.12222,
+        0.0
+      ],
+      "purpose": "corridor entry: brake + start slow corridor leg"
+    },
+    {
+      "burn_id": "MCC2",
+      "epoch_utc": "2026-07-17T22:58:04.266Z",
+      "t_from_window_start_s": 296.0,
+      "dv_x_radial_mps": 0.0,
+      "dv_y_alongtrack_mps": 0.0,
+      "dv_z_crosstrack_mps": 0.0,
+      "dv_magnitude_mps": 0.0,
+      "pos_x_m": NaN,
+      "pos_y_m": NaN,
+      "pos_z_m": NaN,
+      "range_m": NaN,
+      "v_before_mps": NaN,
+      "v_after_mps": NaN,
+      "purpose": "mid-course correction slot: nominal 0, re-targets HP from the navigated state (Monte Carlo p99 30.2 mm/s)"
+    },
+    {
+      "burn_id": "B3",
+      "epoch_utc": "2026-07-17T22:59:05.266Z",
+      "t_from_window_start_s": 357.0,
+      "dv_x_radial_mps": 0.016349,
+      "dv_y_alongtrack_mps": 0.122223,
+      "dv_z_crosstrack_mps": 0.0,
+      "dv_magnitude_mps": 0.123311,
+      "pos_x_m": 0.0,
+      "pos_y_m": 10.0,
+      "pos_z_m": 0.0,
+      "range_m": 10.0,
+      "v_before_mps": [
+        -0.01635,
+        -0.12222,
+        0.0
+      ],
+      "v_after_mps": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "purpose": "stop at 10 m hold point"
+    },
+    {
+      "burn_id": "B4",
+      "epoch_utc": "2026-07-17T22:59:35.266Z",
+      "t_from_window_start_s": 387.0,
+      "dv_x_radial_mps": -0.0,
+      "dv_y_alongtrack_mps": -0.06,
+      "dv_z_crosstrack_mps": -0.0,
+      "dv_magnitude_mps": 0.06,
+      "pos_x_m": 0.0,
+      "pos_y_m": 10.0,
+      "pos_z_m": 0.0,
+      "range_m": 10.0,
+      "v_before_mps": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "v_after_mps": [
+        -0.0,
+        -0.06,
+        -0.0
+      ],
+      "purpose": "start final translation"
+    },
+    {
+      "burn_id": "C-final",
+      "epoch_utc": "2026-07-17T22:59:35.266Z",
+      "t_from_window_start_s": 387.0,
+      "dv_x_radial_mps": NaN,
+      "dv_y_alongtrack_mps": NaN,
+      "dv_z_crosstrack_mps": NaN,
+      "dv_magnitude_mps": 0.021896,
+      "pos_x_m": NaN,
+      "pos_y_m": NaN,
+      "pos_z_m": NaN,
+      "range_m": NaN,
+      "v_before_mps": NaN,
+      "v_after_mps": NaN,
+      "purpose": "continuous final translation compensation over 167 s (2 n v radial accel.)"
+    }
+  ],
+  "dv_impulsive_mps": 1.1619804185343379,
+  "dv_continuous_mps": 0.021896473857716044,
+  "dv_total_mps": 1.183876892392054,
+  "t_contact_s": 553.6666666666667,
+  "contact_utc": "2026-07-17T23:02:21.932Z",
+  "window_margin_s": 30.278645833333258,
+  "sun_on_port_critical_phase_deg": [
+    40.890062473779345,
+    50.784047258085074
+  ],
+  "missed_burns": [
+    {
+      "failed_burn": "B1",
+      "purpose": "departure from initial point toward corridor entry",
+      "t_burn_s": 0.0,
+      "range_at_burn_m": 145.60219778561037,
+      "min_range_m": 145.60219778561037,
+      "time_of_min_range_s": 0.0
+    },
+    {
+      "failed_burn": "B2",
+      "purpose": "corridor entry: brake + start slow corridor leg",
+      "t_burn_s": 235,
+      "range_at_burn_m": 25.0,
+      "min_range_m": 10.017030724944378,
+      "time_of_min_range_s": 44.0
+    },
+    {
+      "failed_burn": "B3",
+      "purpose": "stop at 10 m hold point",
+      "t_burn_s": 357,
+      "range_at_burn_m": 10.0,
+      "min_range_m": 2.177970330852378,
+      "time_of_min_range_s": 78.0
+    },
+    {
+      "failed_burn": "B4",
+      "purpose": "start final translation",
+      "t_burn_s": 387.0,
+      "range_at_burn_m": 10.0,
+      "min_range_m": 10.0,
+      "time_of_min_range_s": 0.0
+    }
+  ],
+  "cam": [
+    {
+      "cam_direction": "+X (radial up)",
+      "dv_cam_mps": 0.15,
+      "worst_additional_closing_m": -6.268010756435121,
+      "closest_return_10min_to_2orbits_m": 10.000946975767295,
+      "safe": false
+    },
+    {
+      "cam_direction": "-X (radial down)",
+      "dv_cam_mps": 0.15,
+      "worst_additional_closing_m": -5.132674125258706,
+      "closest_return_10min_to_2orbits_m": 10.001270684130096,
+      "safe": false
+    },
+    {
+      "cam_direction": "+Y (posigrade)",
+      "dv_cam_mps": 0.15,
+      "worst_additional_closing_m": 0.0,
+      "closest_return_10min_to_2orbits_m": 28.29705972416352,
+      "safe": true
+    },
+    {
+      "cam_direction": "-Y (retrograde)",
+      "dv_cam_mps": 0.15,
+      "worst_additional_closing_m": -23.98081446558811,
+      "closest_return_10min_to_2orbits_m": 79.29185234385295,
+      "safe": false
+    },
+    {
+      "cam_direction": "+Z (normal)",
+      "dv_cam_mps": 0.15,
+      "worst_additional_closing_m": -5.675819318154694,
+      "closest_return_10min_to_2orbits_m": 10.000269252360162,
+      "safe": false
+    },
+    {
+      "cam_direction": "-Z (anti-normal)",
+      "dv_cam_mps": 0.15,
+      "worst_additional_closing_m": -5.675819318154694,
+      "closest_return_10min_to_2orbits_m": 10.000269252360162,
+      "safe": false
+    },
+    {
+      "cam_direction": "away from target",
+      "dv_cam_mps": 0.15,
+      "worst_additional_closing_m": 0.0,
+      "closest_return_10min_to_2orbits_m": 27.756575828700253,
+      "safe": true
+    }
+  ],
+  "nonlinear_validation": {
+    "WP1": 0.01577335005043742,
+    "HP": 0.02871597214093333,
+    "HP_residual_velocity_mm_s": 0.11576610487768697,
+    "hold_drift_m": 0.03209600388255523,
+    "contact_miss_m": 0.0510760894427981,
+    "contact_velocity_error_mm_s": 0.11701558580342314
+  },
+  "monte_carlo": {
+    "samples": 5000,
+    "model": {
+      "mcc_at_half_leg": true,
+      "control_period_s": 2.0,
+      "lateral_time_constant_s": 20.0,
+      "lateral_speed_limit_mps": 0.02,
+      "deadband_mps": 0.002,
+      "nav_correlation_time_s": 30.0
+    },
+    "hp_position_error_m_mean_p99": [
+      0.29636589426620774,
+      0.6363696319442312
+    ],
+    "hp_residual_velocity_mm_s_p99": 4.817668571325871,
+    "hold_end_offset_m_p99": 0.6507703372170249,
+    "corridor_compliance_at_hold_end": 1.0,
+    "min_range_leg1_m_p01": 23.030194784766323,
+    "collision_radius_entry_probability": 0.0,
+    "keep_out_entry_outside_corridor_probability": 0.0,
+    "leg1_mcc_dv_mm_s_mean_p99": [
+      27.257938433471935,
+      58.58889418843592
+    ],
+    "leg2_mcc_dv_mm_s_mean_p99": [
+      13.497253294484887,
+      30.165018288138928
+    ],
+    "final_translation_dv_mps_mean_p99": [
+      0.1448639594459557,
+      0.1697081628447651
+    ],
+    "final_translation_burns_median": 30.0,
+    "final_translation_corridor_compliance": 1.0,
+    "contact_fraction": 1.0,
+    "contact_closing_speed_mps_p01_p99": [
+      0.05769047644261598,
+      0.062375632611982035
+    ],
+    "contact_lateral_rate_mm_s_p99": 2.7536771299825613,
+    "contact_lateral_misalignment_m_mean_p99": [
+      0.026266672385815922,
+      0.062305960625299105
+    ],
+    "final_translation_duration_s_p01_p99": [
+      158.10601746273068,
+      174.56064130492524
+    ],
+    "idss_translational_envelope_fraction": 1.0,
+    "dv_total_mps_mean_p99": [
+      1.2888725015905607,
+      1.342618536008223
+    ]
+  },
+  "initial_velocity_sensitivity": {
+    "assumed_v0": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "alt_v0_natural_circular": [
+      0,
+      0.13137884314629628,
+      0
+    ],
+    "dv_total_alt_mps": 1.2656651758242603,
+    "B1_alt_mps": 0.6386848541582991
+  },
+  "analytic_worksheet": {
+    "n_rad_s": 0.0010948236928858023,
+    "orbital_period_s": 5738.992815014797,
+    "leg1": {
+      "T_s": 235,
+      "nT_rad": 0.25728356782816353,
+      "cos_nT": 0.9670847536621413,
+      "sin_nT": 0.2544544737948922,
+      "Phi_rr": [
+        [
+          1.098745739,
+          0.0,
+          0.0
+        ],
+        [
+          -0.016974564,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.967084754
+        ]
+      ],
+      "Phi_rv": [
+        [
+          232.415936,
+          60.128853,
+          0.0
+        ],
+        [
+          -60.128853,
+          224.663746,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          232.415936
+        ]
+      ],
+      "Phi_vr": [
+        [
+          0.00083574836,
+          0.0,
+          0.0
+        ],
+        [
+          -0.000216218349,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          -0.000278582787
+        ]
+      ],
+      "Phi_vv": [
+        [
+          0.967084754,
+          0.508908948,
+          0.0
+        ],
+        [
+          -0.508908948,
+          0.868339015,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.967084754
+        ]
+      ],
+      "r_start_m": [
+        -80.0,
+        120.0,
+        20.0
+      ],
+      "v_before_mps": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "r_target_m": [
+        0.0,
+        25.0,
+        0.0
+      ],
+      "v_departure_mps": [
+        0.457484,
+        -0.306458,
+        -0.08322
+      ],
+      "v_arrival_mps": [
+        0.219607,
+        -0.48163,
+        -0.086053
+      ]
+    },
+    "leg2": {
+      "T_s": 122,
+      "nT_rad": 0.13356849053206787,
+      "cos_nT": 0.9910929831563231,
+      "sin_nT": 0.13317168895189505,
+      "Phi_rr": [
+        [
+          1.026721051,
+          0.0,
+          0.0
+        ],
+        [
+          -0.002380809,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.991092983
+        ]
+      ],
+      "Phi_rv": [
+        [
+          121.637566,
+          16.271144,
+          0.0
+        ],
+        [
+          -16.271144,
+          120.550263,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          121.637566
+        ]
+      ],
+      "Phi_vr": [
+        [
+          0.000437398561,
+          0.0,
+          0.0
+        ],
+        [
+          -5.8509678e-05,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          -0.00014579952
+        ]
+      ],
+      "Phi_vv": [
+        [
+          0.991092983,
+          0.266343378,
+          0.0
+        ],
+        [
+          -0.266343378,
+          0.964371933,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.991092983
+        ]
+      ],
+      "r_start_m": [
+        0.0,
+        25.0,
+        0.0
+      ],
+      "v_before_mps": [
+        0.219607,
+        -0.48163,
+        -0.086053
+      ],
+      "r_target_m": [
+        0.0,
+        10.0,
+        0.0
+      ],
+      "v_departure_mps": [
+        0.016349,
+        -0.122223,
+        0.0
+      ],
+      "v_arrival_mps": [
+        -0.016349,
+        -0.122223,
+        0.0
+      ]
+    },
+    "burns": [
+      {
+        "id": "B1",
+        "dv_mps": [
+          0.457484,
+          -0.306458,
+          -0.08322
+        ],
+        "dv_mag_mps": 0.556897,
+        "purpose": "departure from initial point toward corridor entry"
+      },
+      {
+        "id": "B2",
+        "dv_mps": [
+          -0.203258,
+          0.359407,
+          0.086053
+        ],
+        "dv_mag_mps": 0.421773,
+        "purpose": "corridor entry: brake + start slow corridor leg"
+      },
+      {
+        "id": "B3",
+        "dv_mps": [
+          0.016349,
+          0.122223,
+          0.0
+        ],
+        "dv_mag_mps": 0.123311,
+        "purpose": "stop at 10 m hold point"
+      },
+      {
+        "id": "B4",
+        "dv_mps": [
+          -0.0,
+          -0.06,
+          -0.0
+        ],
+        "dv_mag_mps": 0.06,
+        "purpose": "start final translation"
+      }
+    ],
+    "final_translation": {
+      "length_m": 10.0,
+      "speed_mps": 0.06,
+      "duration_s": 166.66666666666669,
+      "radial_accel_required_mps2": 0.00013137884314629627,
+      "continuous_dv_2nL_mps": 0.021896473857716047,
+      "numerical_integral_mps": 0.021896473857716044
+    },
+    "dv_impulsive_total_mps": 1.1619804185343379,
+    "dv_continuous_total_mps": 0.021896473857716044,
+    "dv_total_mps": 1.183876892392054
+  },
+  "window_robustness": [
+    {
+      "case": "selected (minimum relaxation (illumination band widened by 3.41 deg))",
+      "window_start_utc": "2026-07-17T22:53:08.266Z",
+      "available_s": 583.9,
+      "T1_s": 235,
+      "T2_s": 122,
+      "selected_strategy": "vbar_plus",
+      "vbar_dv_total_mps": 1.1839,
+      "vbar_sun_on_port_deg": [
+        40.9,
+        50.8
+      ],
+      "vbar_margin_s": 30.3,
+      "eligible_strategies": "vbar_plus,sun_optimal"
+    },
+    {
+      "case": "first window at a round 4 deg widening (Jul 16)",
+      "window_start_utc": "2026-07-16T22:56:29.857Z",
+      "available_s": 586.6,
+      "T1_s": 234,
+      "T2_s": 126,
+      "selected_strategy": "vbar_plus",
+      "vbar_dv_total_mps": 1.1878,
+      "vbar_sun_on_port_deg": [
+        40.7,
+        50.6
+      ],
+      "vbar_margin_s": 29.9,
+      "eligible_strategies": "vbar_plus,sun_optimal"
+    },
+    {
+      "case": "longest strictly-feasible span, 7.7 min (Jul 12)",
+      "window_start_utc": "2026-07-12T23:12:07.051Z",
+      "available_s": 462.1,
+      "T1_s": 134,
+      "T2_s": 101,
+      "selected_strategy": "vbar_plus",
+      "vbar_dv_total_mps": 1.9899,
+      "vbar_sun_on_port_deg": [
+        39.8,
+        49.6
+      ],
+      "vbar_margin_s": 30.5,
+      "eligible_strategies": "vbar_plus,sun_optimal"
+    }
+  ],
+  "runtime_s": 21.2,
+  "files": {
+    "maneuver_plan": "/home/claude/aule-rpod/outputs/part2/csv/maneuver_plan.csv",
+    "trajectory": "/home/claude/aule-rpod/outputs/part2/csv/approach_trajectory_lvlh_1s.csv",
+    "strategy_trade": "/home/claude/aule-rpod/outputs/part2/csv/strategy_trade.csv",
+    "timeline_trade": "/home/claude/aule-rpod/outputs/part2/csv/timeline_trade.csv",
+    "missed_burn_safety": "/home/claude/aule-rpod/outputs/part2/csv/missed_burn_safety.csv",
+    "cam_scan": "/home/claude/aule-rpod/outputs/part2/csv/collision_avoidance_scan.csv",
+    "plume": "/home/claude/aule-rpod/outputs/part2/csv/plume_exposure.csv",
+    "window_robustness": "/home/claude/aule-rpod/outputs/part2/csv/window_robustness.csv",
+    "nonlinear_log": "/home/claude/aule-rpod/outputs/part2/csv/nonlinear_j2_relative_trajectory.csv",
+    "fig_trajectory": "/home/claude/aule-rpod/outputs/part2/figures/approach_trajectory.png",
+    "fig_timeline": "/home/claude/aule-rpod/outputs/part2/figures/part2_timeline.png",
+    "fig_trade": "/home/claude/aule-rpod/outputs/part2/figures/strategy_trade_sun.png",
+    "fig_mc": "/home/claude/aule-rpod/outputs/part2/figures/monte_carlo.png",
+    "fig_tl": "/home/claude/aule-rpod/outputs/part2/figures/timeline_trade.png",
+    "fig_cam": "/home/claude/aule-rpod/outputs/part2/figures/collision_avoidance.png"
+  }
+}

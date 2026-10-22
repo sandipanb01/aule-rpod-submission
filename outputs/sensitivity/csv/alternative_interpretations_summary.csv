@@ -1,0 +1,13 @@
+scenario,description,strict_windows,windows_by_station,first_window_open_utc,longest_feasible_span_s,extra
+baseline,"As specified: LTAN 10:30 (mean Sun), STK quaternion convention, SLERP, secular J2",0,,,462.13,
+ltdn_1030,LTDN 10:30 instead of LTAN 10:30 (i.e. LTAN 22:30),3,Svalbard:3,2026-07-11T09:30:07.941Z,560.4,
+quat_transposed,Quaternion read as body->reference (convention mistake test),0,,,86.05,
+att_nlerp,Attitude interpolated as STK 'Lagrange order 1' (NLERP),0,,,461.85,
+att_law,Attitude from the identified closed-form law,0,,,461.87,
+cowell_osc,"Numerical J2, entered elements taken as osculating",0,,,455.59,
+cowell_mean,"Numerical J2, entered elements taken as mean",0,,,460.59,
+penumbra_ok,Eclipse = umbra only (penumbra allowed),0,,,462.13,
+true_sun_ltan,LTAN referenced to the true (apparent) Sun,0,,,461.19,EoT offset +0.968 deg
+u0_90,Initial argument of latitude 90 deg (phase sensitivity),0,,,442.78,
+u0_180,Initial argument of latitude 180 deg,0,,,442.88,
+u0_270,Initial argument of latitude 270 deg,0,,,504.76,

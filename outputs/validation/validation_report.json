@@ -1,0 +1,139 @@
+{
+  "V1_attitude": {
+    "law_fit_max_residual_rad": 2.2166653606544918e-11,
+    "law_fit_rms_residual_rad": 8.432806355232025e-12,
+    "slerp_vs_law_port_max_deg": 0.1869129481119771,
+    "nlerp_vs_law_port_max_deg": 0.21691764432639646,
+    "law": {
+      "precession_axis_lvlh": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "precession_rate_deg_s": 1.199999999999999,
+      "precession_period_s": 300.0000000000002,
+      "spin_axis_body": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "spin_rate_deg_s": 0.109384178312102,
+      "spin_period_s": 3291.152391096496,
+      "nutation_deg": 10.000000000000012,
+      "R0_lvlh_from_body": [
+        [
+          0.171010071663,
+          -0.875620805024,
+          0.45171203349
+        ],
+        [
+          0.984807753012,
+          0.165938658258,
+          -0.051166896551
+        ],
+        [
+          -0.030153689608,
+          0.453599567356,
+          0.890695339326
+        ]
+      ],
+      "rms_residual_rad": 8.432806355232025e-12,
+      "max_residual_rad": 2.2166653606544918e-11
+    },
+    "convention_test_bodyX_in_ref": [
+      0.0,
+      1.0,
+      0.0
+    ],
+    "convention_test_matches_shuster_A_transpose": true,
+    "verdict": "PASS"
+  },
+  "V2_sun_ephemeris": {
+    "interp_vs_direct_arcsec": 0.00434670577101264,
+    "almanac_vs_erfa_arcsec": 19.026920184691335,
+    "de421_vs_erfa_arcsec": 0.009220755379517215,
+    "de421_vs_erfa_range_km": 1.4764105081558228,
+    "neglected_aberration_arcsec": 20.5,
+    "verdict": "PASS"
+  },
+  "V3_frames": {
+    "c2t_interp_vs_erfa_direct_rad": 1.0390819313823319e-12,
+    "itrs_position_vs_astropy_m": 0.01967512490115594,
+    "elevation_vs_astropy_deg": 4.859430191572756e-07,
+    "verdict": "PASS"
+  },
+  "V4_orbit": {
+    "cowell_mean": {
+      "phase_diff_deg_at_mission_start": 0.20926976708165057,
+      "phase_diff_deg_at_mission_end": 0.4574082995341655,
+      "phase_drift_deg_per_day": 0.023904563225177162,
+      "radius_diff_km_range": [
+        2.936500612691816,
+        6.067280816804669
+      ],
+      "mean_sma_km": 6928.128983960566
+    },
+    "cowell_osculating": {
+      "phase_diff_deg_at_mission_start": 98.89160714312747,
+      "phase_diff_deg_at_mission_end": 208.63460804298634,
+      "phase_drift_deg_per_day": 10.981895032100654,
+      "radius_diff_km_range": [
+        -9.4770010863258,
+        0.0
+      ],
+      "mean_sma_km": 6918.776724239475
+    },
+    "ltan_flown_h_range": [
+      10.500000155041587,
+      10.500044328867471
+    ],
+    "ltan_drift_s_over_19_days": 0.15902577318342992,
+    "node_crossings_checked": 285,
+    "verdict": "PASS"
+  },
+  "V5_event_grid": {
+    "max_event_time_diff_1s_vs_2s_grid_s": 0.0,
+    "max_event_time_diff_5s_vs_2s_grid_s": 0.00067138671875,
+    "n_band_intervals": {
+      "1.0": 1001,
+      "2.0": 1001,
+      "5.0": 1001
+    },
+    "verdict": "PASS"
+  },
+  "V6_end_to_end_independent": {
+    "rows": [
+      {
+        "station": "Wellington",
+        "pass_aos_utc": "2026-07-12T23:09:58.634Z",
+        "pipeline_longest_feasible_s": 462.135,
+        "independent_longest_feasible_s": 461.5,
+        "difference_s": 0.6349999999999909
+      },
+      {
+        "station": "Wellington",
+        "pass_aos_utc": "2026-07-11T23:13:21.406Z",
+        "pipeline_longest_feasible_s": 417.009,
+        "independent_longest_feasible_s": 416.5,
+        "difference_s": 0.5090000000000146
+      },
+      {
+        "station": "Wellington",
+        "pass_aos_utc": "2026-07-17T22:53:08.266Z",
+        "pipeline_longest_feasible_s": 387.293,
+        "independent_longest_feasible_s": 388.0,
+        "difference_s": 0.7069999999999936
+      }
+    ],
+    "verdict": "PASS"
+  },
+  "V7_orekit": {
+    "teoe_frame_diff_rad": 2.2758732601236477e-09,
+    "cowell_vs_orekit_max_position_diff_m": 0.018501984504433817,
+    "elevation_vs_orekit_max_deg": 1.34880584568009e-06,
+    "aos_los_vs_orekit_max_s": 0.0009054394904524088,
+    "penumbra_events_vs_orekit_max_s": 0.013839253457263112,
+    "verdict": "PASS"
+  },
+  "runtime_s": 182.6
+}

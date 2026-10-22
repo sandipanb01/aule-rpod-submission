@@ -1,0 +1,5 @@
+failed_burn,purpose,t_burn_s,range_at_burn_m,min_range_m,time_of_min_range_s
+B1,departure from initial point toward corridor entry,0.0,145.60219778561037,145.60219778561037,0.0
+B2,corridor entry: brake + start slow corridor leg,235.0,25.0,10.017030724944378,44.0
+B3,stop at 10 m hold point,357.0,10.0,2.177970330852378,78.0
+B4,start final translation,387.0,10.0,10.0,0.0

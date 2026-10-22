@@ -1,0 +1,98 @@
+{
+  "config_fingerprint": "29635b2a86955899",
+  "attitude_file_sha256": "c96583fd565862396b56b6955a3dfde59b01fcd56da3adeae0c90e5d8de67ec6",
+  "orbit": {
+    "a_km": 6928.137,
+    "altitude_km_equatorial": null,
+    "e": 0.0,
+    "i_deg": 97.59295502837809,
+    "raan_teoe_deg": 76.49047319093448,
+    "arg_latitude_epoch_deg": 0.0,
+    "era_epoch_deg": 16.490533931792793,
+    "ut1_hours_epoch": 6.500004049390554,
+    "propagator": "secular J2 (analytic)",
+    "nodal_period_min": 95.77248973123528
+  },
+  "beta_deg_range": [
+    -25.176,
+    -24.896
+  ],
+  "passes_total": {
+    "Svalbard": 140,
+    "Bengaluru": 32,
+    "Wellington": 45,
+    "Los Angeles": 41
+  },
+  "passes_ge_required_duration": {
+    "Svalbard": 80,
+    "Bengaluru": 15,
+    "Wellington": 19,
+    "Los Angeles": 16
+  },
+  "eclipses": 151,
+  "eclipses_cut_by_mission_window": 1,
+  "full_eclipse_duration_s_range": [
+    2053.02,
+    2055.312
+  ],
+  "full_eclipse_umbra_s_range": [
+    2034.209,
+    2036.561
+  ],
+  "sun_band_fraction_of_time": 0.23168407129358362,
+  "sun_band_intervals_ge_required": 63,
+  "lit_and_band_intervals_ge_required": 29,
+  "strict_docking_windows": 0,
+  "best_candidate": {
+    "rank": 1,
+    "station": "Wellington",
+    "pass_aos_utc": "2026-07-12T23:09:58.634Z",
+    "pass_los_utc": "2026-07-12T23:19:49.186Z",
+    "pass_duration_s": 590.552,
+    "max_elevation_deg": 89.17,
+    "status": "NOT VALID",
+    "longest_feasible_start_utc": "2026-07-12T23:12:07.051Z",
+    "longest_feasible_end_utc": "2026-07-12T23:19:49.186Z",
+    "longest_feasible_s": 462.135,
+    "deficit_vs_required_s": 77.865,
+    "limited_at_start_by": "sun angle < 30 deg",
+    "limited_at_end_by": "pass LOS",
+    "sun_angle_min_in_pass_deg": 22.36,
+    "sun_angle_max_in_pass_deg": 56.21,
+    "sunlit_fraction_of_pass": 1.0,
+    "min_band_widening_for_window_deg": 7.64,
+    "min_lower_bound_relaxation_deg": 7.64,
+    "relaxed_window_start_utc": "2026-07-12T23:09:58.634Z"
+  },
+  "min_uniform_band_widening_deg": 3.41,
+  "windows_under_min_relaxation": [
+    {
+      "scenario": "illumination band widened by 3.41 deg",
+      "window_id": "W01",
+      "station": "Wellington",
+      "pass_aos_utc": "2026-07-17T22:53:08.266Z",
+      "pass_los_utc": "2026-07-17T23:02:52.211Z",
+      "window_open_utc": "2026-07-17T22:53:08.266Z",
+      "latest_start_utc": "2026-07-17T22:53:52.211Z",
+      "feasible_end_utc": "2026-07-17T23:02:52.211Z",
+      "feasible_duration_s": 583.945,
+      "start_slack_s": 43.945
+    }
+  ],
+  "first_window_under_min_relaxation_utc": "2026-07-17T22:53:08.266Z",
+  "runtime_s": 17.58,
+  "files": {
+    "ground_station_passes": "/home/claude/aule-rpod/outputs/part1/csv/ground_station_passes.csv",
+    "eclipse_windows": "/home/claude/aule-rpod/outputs/part1/csv/eclipse_windows.csv",
+    "sun_angle_band_intervals": "/home/claude/aule-rpod/outputs/part1/csv/sun_angle_band_intervals.csv",
+    "sun_angle_timeseries_10s": "/home/claude/aule-rpod/outputs/part1/csv/sun_angle_timeseries_10s.csv",
+    "state_timeline_60s": "/home/claude/aule-rpod/outputs/part1/csv/state_timeline_60s.csv",
+    "docking_windows": "/home/claude/aule-rpod/outputs/part1/csv/docking_windows.csv",
+    "docking_window_candidates": "/home/claude/aule-rpod/outputs/part1/csv/docking_window_candidates.csv",
+    "docking_windows_min_relaxation": "/home/claude/aule-rpod/outputs/part1/csv/docking_windows_min_relaxation.csv",
+    "constraint_event_log": "/home/claude/aule-rpod/outputs/part1/csv/constraint_event_log.csv",
+    "gantt_png": "/home/claude/aule-rpod/outputs/part1/figures/gantt_docking_windows.png",
+    "gantt_html": "/home/claude/aule-rpod/outputs/part1/figures/gantt_docking_windows_interactive.html",
+    "candidates_png": "/home/claude/aule-rpod/outputs/part1/figures/near_miss_pass_anatomy.png"
+  }
+}

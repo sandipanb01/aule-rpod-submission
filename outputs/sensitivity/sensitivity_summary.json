@@ -1,0 +1,374 @@
+{
+  "zoom": {
+    "ltan_10_30_fraction_of_phases_with_window": 0.013888888888888888,
+    "ltan_10_30_best_span_s_over_phases": [
+      391.21358321467414,
+      548.5771339067724
+    ]
+  },
+  "alternatives": [
+    {
+      "scenario": "baseline",
+      "description": "As specified: LTAN 10:30 (mean Sun), STK quaternion convention, SLERP, secular J2",
+      "strict_windows": 0,
+      "windows_by_station": "",
+      "first_window_open_utc": "",
+      "longest_feasible_span_s": 462.13,
+      "extra": ""
+    },
+    {
+      "scenario": "ltdn_1030",
+      "description": "LTDN 10:30 instead of LTAN 10:30 (i.e. LTAN 22:30)",
+      "strict_windows": 3,
+      "windows_by_station": "Svalbard:3",
+      "first_window_open_utc": "2026-07-11T09:30:07.941Z",
+      "longest_feasible_span_s": 560.4,
+      "extra": ""
+    },
+    {
+      "scenario": "quat_transposed",
+      "description": "Quaternion read as body->reference (convention mistake test)",
+      "strict_windows": 0,
+      "windows_by_station": "",
+      "first_window_open_utc": "",
+      "longest_feasible_span_s": 86.05,
+      "extra": ""
+    },
+    {
+      "scenario": "att_nlerp",
+      "description": "Attitude interpolated as STK 'Lagrange order 1' (NLERP)",
+      "strict_windows": 0,
+      "windows_by_station": "",
+      "first_window_open_utc": "",
+      "longest_feasible_span_s": 461.85,
+      "extra": ""
+    },
+    {
+      "scenario": "att_law",
+      "description": "Attitude from the identified closed-form law",
+      "strict_windows": 0,
+      "windows_by_station": "",
+      "first_window_open_utc": "",
+      "longest_feasible_span_s": 461.87,
+      "extra": ""
+    },
+    {
+      "scenario": "cowell_osc",
+      "description": "Numerical J2, entered elements taken as osculating",
+      "strict_windows": 0,
+      "windows_by_station": "",
+      "first_window_open_utc": "",
+      "longest_feasible_span_s": 455.59,
+      "extra": ""
+    },
+    {
+      "scenario": "cowell_mean",
+      "description": "Numerical J2, entered elements taken as mean",
+      "strict_windows": 0,
+      "windows_by_station": "",
+      "first_window_open_utc": "",
+      "longest_feasible_span_s": 460.59,
+      "extra": ""
+    },
+    {
+      "scenario": "penumbra_ok",
+      "description": "Eclipse = umbra only (penumbra allowed)",
+      "strict_windows": 0,
+      "windows_by_station": "",
+      "first_window_open_utc": "",
+      "longest_feasible_span_s": 462.13,
+      "extra": ""
+    },
+    {
+      "scenario": "true_sun_ltan",
+      "description": "LTAN referenced to the true (apparent) Sun",
+      "strict_windows": 0,
+      "windows_by_station": "",
+      "first_window_open_utc": "",
+      "longest_feasible_span_s": 461.19,
+      "extra": "EoT offset +0.968 deg"
+    },
+    {
+      "scenario": "u0_90",
+      "description": "Initial argument of latitude 90 deg (phase sensitivity)",
+      "strict_windows": 0,
+      "windows_by_station": "",
+      "first_window_open_utc": "",
+      "longest_feasible_span_s": 442.78,
+      "extra": ""
+    },
+    {
+      "scenario": "u0_180",
+      "description": "Initial argument of latitude 180 deg",
+      "strict_windows": 0,
+      "windows_by_station": "",
+      "first_window_open_utc": "",
+      "longest_feasible_span_s": 442.88,
+      "extra": ""
+    },
+    {
+      "scenario": "u0_270",
+      "description": "Initial argument of latitude 270 deg",
+      "strict_windows": 0,
+      "windows_by_station": "",
+      "first_window_open_utc": "",
+      "longest_feasible_span_s": 504.76,
+      "extra": ""
+    }
+  ],
+  "relaxation": [
+    {
+      "study": "sun_angle_lower_bound_deg",
+      "value": 20.0,
+      "windows": 7,
+      "first_window_utc": "2026-07-10T23:16:44.404Z",
+      "kind": "grid"
+    },
+    {
+      "study": "sun_angle_lower_bound_deg",
+      "value": 21.0,
+      "windows": 6,
+      "first_window_utc": "2026-07-11T23:13:21.406Z",
+      "kind": "grid"
+    },
+    {
+      "study": "sun_angle_lower_bound_deg",
+      "value": 22.0,
+      "windows": 4,
+      "first_window_utc": "2026-07-12T23:09:58.634Z",
+      "kind": "grid"
+    },
+    {
+      "study": "sun_angle_lower_bound_deg",
+      "value": 23.0,
+      "windows": 2,
+      "first_window_utc": "2026-07-16T22:56:29.857Z",
+      "kind": "grid"
+    },
+    {
+      "study": "sun_angle_lower_bound_deg",
+      "value": 24.0,
+      "windows": 2,
+      "first_window_utc": "2026-07-16T22:56:29.857Z",
+      "kind": "grid"
+    },
+    {
+      "study": "sun_angle_lower_bound_deg",
+      "value": 25.0,
+      "windows": 2,
+      "first_window_utc": "2026-07-16T22:56:29.857Z",
+      "kind": "grid"
+    },
+    {
+      "study": "sun_angle_lower_bound_deg",
+      "value": 26.0,
+      "windows": 2,
+      "first_window_utc": "2026-07-16T22:56:29.857Z",
+      "kind": "grid"
+    },
+    {
+      "study": "sun_angle_lower_bound_deg",
+      "value": 27.0,
+      "windows": 0,
+      "first_window_utc": "",
+      "kind": "grid"
+    },
+    {
+      "study": "sun_angle_lower_bound_deg",
+      "value": 28.0,
+      "windows": 0,
+      "first_window_utc": "",
+      "kind": "grid"
+    },
+    {
+      "study": "sun_angle_lower_bound_deg",
+      "value": 29.0,
+      "windows": 0,
+      "first_window_utc": "",
+      "kind": "grid"
+    },
+    {
+      "study": "sun_angle_lower_bound_deg",
+      "value": 30.0,
+      "windows": 0,
+      "first_window_utc": "",
+      "kind": "grid"
+    },
+    {
+      "study": "uniform_band_widening_deg",
+      "value": 0.0,
+      "windows": 0,
+      "first_window_utc": "",
+      "kind": "grid"
+    },
+    {
+      "study": "uniform_band_widening_deg",
+      "value": 1.0,
+      "windows": 0,
+      "first_window_utc": "",
+      "kind": "grid"
+    },
+    {
+      "study": "uniform_band_widening_deg",
+      "value": 2.0,
+      "windows": 0,
+      "first_window_utc": "",
+      "kind": "grid"
+    },
+    {
+      "study": "uniform_band_widening_deg",
+      "value": 3.0,
+      "windows": 0,
+      "first_window_utc": "",
+      "kind": "grid"
+    },
+    {
+      "study": "uniform_band_widening_deg",
+      "value": 4.0,
+      "windows": 2,
+      "first_window_utc": "2026-07-16T22:56:29.857Z",
+      "kind": "grid"
+    },
+    {
+      "study": "uniform_band_widening_deg",
+      "value": 5.0,
+      "windows": 2,
+      "first_window_utc": "2026-07-16T22:56:29.857Z",
+      "kind": "grid"
+    },
+    {
+      "study": "uniform_band_widening_deg",
+      "value": 6.0,
+      "windows": 2,
+      "first_window_utc": "2026-07-16T22:56:29.857Z",
+      "kind": "grid"
+    },
+    {
+      "study": "uniform_band_widening_deg",
+      "value": 7.0,
+      "windows": 2,
+      "first_window_utc": "2026-07-16T22:56:29.857Z",
+      "kind": "grid"
+    },
+    {
+      "study": "uniform_band_widening_deg",
+      "value": 8.0,
+      "windows": 4,
+      "first_window_utc": "2026-07-12T23:09:58.634Z",
+      "kind": "grid"
+    },
+    {
+      "study": "uniform_band_widening_deg",
+      "value": 3.41,
+      "windows": 1,
+      "first_window_utc": "2026-07-17T22:53:08.266Z",
+      "kind": "minimum"
+    },
+    {
+      "study": "min_elevation_deg",
+      "value": 0.0,
+      "windows": 0,
+      "first_window_utc": "",
+      "kind": "grid"
+    },
+    {
+      "study": "min_elevation_deg",
+      "value": 1.0,
+      "windows": 0,
+      "first_window_utc": "",
+      "kind": "grid"
+    },
+    {
+      "study": "min_elevation_deg",
+      "value": 2.0,
+      "windows": 0,
+      "first_window_utc": "",
+      "kind": "grid"
+    },
+    {
+      "study": "min_elevation_deg",
+      "value": 3.0,
+      "windows": 0,
+      "first_window_utc": "",
+      "kind": "grid"
+    },
+    {
+      "study": "min_elevation_deg",
+      "value": 4.0,
+      "windows": 0,
+      "first_window_utc": "",
+      "kind": "grid"
+    },
+    {
+      "study": "min_elevation_deg",
+      "value": 5.0,
+      "windows": 0,
+      "first_window_utc": "",
+      "kind": "grid"
+    },
+    {
+      "study": "required_duration_min",
+      "value": 5.0,
+      "windows": 6,
+      "first_window_utc": "2026-07-10T23:20:59.749Z",
+      "kind": "grid"
+    },
+    {
+      "study": "required_duration_min",
+      "value": 5.5,
+      "windows": 6,
+      "first_window_utc": "2026-07-10T23:20:59.749Z",
+      "kind": "grid"
+    },
+    {
+      "study": "required_duration_min",
+      "value": 6.0,
+      "windows": 3,
+      "first_window_utc": "2026-07-11T23:16:14.317Z",
+      "kind": "grid"
+    },
+    {
+      "study": "required_duration_min",
+      "value": 6.5,
+      "windows": 2,
+      "first_window_utc": "2026-07-11T23:16:14.317Z",
+      "kind": "grid"
+    },
+    {
+      "study": "required_duration_min",
+      "value": 7.0,
+      "windows": 1,
+      "first_window_utc": "2026-07-12T23:12:07.051Z",
+      "kind": "grid"
+    },
+    {
+      "study": "required_duration_min",
+      "value": 7.5,
+      "windows": 1,
+      "first_window_utc": "2026-07-12T23:12:07.051Z",
+      "kind": "grid"
+    },
+    {
+      "study": "required_duration_min",
+      "value": 8.0,
+      "windows": 0,
+      "first_window_utc": "",
+      "kind": "grid"
+    },
+    {
+      "study": "required_duration_min",
+      "value": 8.5,
+      "windows": 0,
+      "first_window_utc": "",
+      "kind": "grid"
+    },
+    {
+      "study": "required_duration_min",
+      "value": 9.0,
+      "windows": 0,
+      "first_window_utc": "",
+      "kind": "grid"
+    }
+  ],
+  "runtime_s": 779.5
+}

@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aule-rpod"
+version = "1.0.0"
+description = "Docking-window analysis and RPOD final-approach design for an on-orbit servicing mission"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "numpy>=1.26",
+  "scipy>=1.11",
+  "pandas>=2.0",
+  "matplotlib>=3.8",
+  "pyerfa>=2.0.1",
+  "astropy>=6.0",
+  "pyyaml>=6.0",
+  "pydantic>=2.5",
+  "plotly>=5.18",
+]
+
+[project.optional-dependencies]
+validation = ["orekit-jpype>=13.0"]
+dev = ["pytest>=8"]
+
+[project.scripts]
+aule-rpod = "aule_rpod.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

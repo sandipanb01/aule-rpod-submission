@@ -1,0 +1,79 @@
+# =============================================================================
+#  Mission configuration -- single source of truth for every number used by the
+#  pipeline. Values marked ASSUMPTION are not given in the assignment and are
+#  justified in the technical report (Section 2).
+#  Frames: LVLH follows the STK definition used by the attitude file:
+#    X = radial (zenith), Y = along-track (Z x X), Z = orbit normal (r x v).
+# =============================================================================
+
+scenario:
+  name: "Aule RPOD docking-window analysis"
+  orbit_epoch_utc: "2026-07-01T06:30:00"
+  mission_start_utc: "2026-07-10T06:30:00"
+  mission_end_utc: "2026-07-20T06:30:00"
+
+target_orbit:
+  altitude_km: 550.0                  # above WGS-84 equatorial radius
+  eccentricity: 0.0
+  ltan_hours: 10.5                    # local MEAN solar time of ascending node
+  arg_latitude_at_epoch_deg: 0.0      # ASSUMPTION: at ascending node at orbit epoch
+  propagator: secular_j2              # secular_j2 | cowell_osculating | cowell_mean
+  # secular_j2: first-order secular J2 (Omega, omega, M rates), elements entered
+  # as given -- the formulation of STK's J2Perturbation propagator (default
+  # 'Osculating' ellipse option). Cowell variants are used for sensitivity.
+
+earth:
+  mu_km3_s2: 398600.4418
+  equatorial_radius_km: 6378.137
+  flattening: 0.0033528106647474805   # 1/298.257223563 (WGS-84)
+  j2: 1.08262668e-3                   # EGM96 / WGS-84
+  tropical_year_days: 365.2421897
+
+attitude:
+  file: data/Target_Attitude_Profile.a
+  interpolation: slerp                # slerp | nlerp (STK Lagrange order 1) | law
+  docking_port_body: [0.9962, 0.0, 0.0872]
+
+constraints:
+  sun_angle_min_deg: 30.0
+  sun_angle_max_deg: 60.0
+  docking_duration_s: 540.0           # 9 min
+  min_elevation_deg: 5.0
+  eclipse_excludes_penumbra: true     # ASSUMPTION: any Earth occultation = eclipse
+
+ground_stations:                      # ASSUMPTION: altitude 0 m above WGS-84
+  - {name: Svalbard,   lat_deg: 78.2329,  lon_deg: 15.3818,   alt_m: 0.0}
+  - {name: Bengaluru,  lat_deg: 13.0348,  lon_deg: 77.5117,   alt_m: 0.0}
+  - {name: Wellington, lat_deg: -41.152,  lon_deg: 175.505,   alt_m: 0.0}
+  - {name: Los Angeles, lat_deg: 34.0312, lon_deg: -118.457,  alt_m: 0.0}
+
+numerics:
+  grid_step_s: 2.0                    # event-detection sampling grid
+  root_tol_s: 1.0e-3                  # event time accuracy
+  timeseries_step_s: 10.0             # cadence of the sun-angle CSV
+
+part2:
+  initial_relative_position_lvlh_m: [-80.0, 120.0, 20.0]   # 80 m below, 120 m ahead, 20 m cross-track
+  initial_relative_velocity_lvlh_mps: [0.0, 0.0, 0.0]      # ASSUMPTION: held at rest in LVLH
+  hold_point_distance_m: 10.0
+  hold_duration_s: 30.0               # go/no-go poll at the 10 m hold point
+  final_approach_speed_mps: 0.06
+  contact_speed_mps: 0.03
+  keep_out_sphere_radius_m: 25.0      # KOS: inside it, motion only inside the approach corridor (WP1 on its boundary)
+  collision_radius_m: 5.0             # ASSUMPTION: target envelope + margin (passive-safety miss criterion)
+  corridor_half_angle_deg: 10.0
+  camera_sun_exclusion_deg: 30.0      # min Sun angle off the chaser camera boresight
+  window_margin_s: 30.0
+  monte_carlo:
+    samples: 5000
+    seed: 20260710
+    nav_position_sigma_frac_of_range: 0.01   # 1 % of range per axis (vision/LIDAR class)
+    nav_position_sigma_floor_m: 0.01
+    nav_velocity_sigma_mps: 0.001
+    burn_magnitude_sigma_frac: 0.01
+    burn_pointing_sigma_deg: 0.5
+    nav_correlation_time_s: 30.0     # ASSUMPTION: Gauss-Markov navigation error during the final translation
+    control_period_s: 2.0            # ASSUMPTION: final-translation guidance cycle
+    lateral_time_constant_s: 20.0    # ASSUMPTION: lateral (corridor-centring) loop time constant
+    lateral_speed_limit_mps: 0.02
+    thruster_deadband_mps: 0.002     # ASSUMPTION: smallest correction commanded (limits chattering)

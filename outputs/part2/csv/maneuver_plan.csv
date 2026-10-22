@@ -1,0 +1,8 @@
+burn_id,epoch_utc,t_from_window_start_s,dv_x_radial_mps,dv_y_alongtrack_mps,dv_z_crosstrack_mps,dv_magnitude_mps,pos_x_m,pos_y_m,pos_z_m,range_m,v_before_mps,v_after_mps,purpose
+B1,2026-07-17T22:53:08.266Z,0.0,0.457484,-0.306458,-0.08322,0.556897,-80.0,120.0,20.0,145.602,"[0.0, 0.0, 0.0]","[0.45748, -0.30646, -0.08322]",departure from initial point toward corridor entry
+MCC1,2026-07-17T22:55:05.766Z,117.5,0.0,0.0,0.0,0.0,,,,,,,"mid-course correction slot: nominal 0, re-targets WP1 from the navigated state (Monte Carlo p99 58.6 mm/s)"
+B2,2026-07-17T22:57:03.266Z,235.0,-0.203258,0.359407,0.086053,0.421773,0.0,25.0,0.0,25.0,"[0.21961, -0.48163, -0.08605]","[0.01635, -0.12222, 0.0]",corridor entry: brake + start slow corridor leg
+MCC2,2026-07-17T22:58:04.266Z,296.0,0.0,0.0,0.0,0.0,,,,,,,"mid-course correction slot: nominal 0, re-targets HP from the navigated state (Monte Carlo p99 30.2 mm/s)"
+B3,2026-07-17T22:59:05.266Z,357.0,0.016349,0.122223,0.0,0.123311,0.0,10.0,0.0,10.0,"[-0.01635, -0.12222, 0.0]","[0.0, 0.0, 0.0]",stop at 10 m hold point
+B4,2026-07-17T22:59:35.266Z,387.0,-0.0,-0.06,-0.0,0.06,0.0,10.0,0.0,10.0,"[0.0, 0.0, 0.0]","[-0.0, -0.06, -0.0]",start final translation
+C-final,2026-07-17T22:59:35.266Z,387.0,,,,0.021896,,,,,,,continuous final translation compensation over 167 s (2 n v radial accel.)

@@ -1,0 +1,8 @@
+cam_direction,dv_cam_mps,worst_additional_closing_m,closest_return_10min_to_2orbits_m,safe
++X (radial up),0.15,-6.268010756435121,10.000946975767295,False
+-X (radial down),0.15,-5.132674125258706,10.001270684130096,False
++Y (posigrade),0.15,0.0,28.29705972416352,True
+-Y (retrograde),0.15,-23.98081446558811,79.29185234385295,False
++Z (normal),0.15,-5.675819318154694,10.000269252360162,False
+-Z (anti-normal),0.15,-5.675819318154694,10.000269252360162,False
+away from target,0.15,0.0,27.756575828700253,True

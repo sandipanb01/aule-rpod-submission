@@ -1,0 +1,43 @@
+{
+  "generated_utc": "2026-10-21T13:38:14Z",
+  "python": "3.13.16",
+  "platform": "Linux-6.18.44-fc-v139-x86_64-with-glibc2.39",
+  "config_fingerprint": "29635b2a86955899",
+  "source_sha256": "16537779f567f207aa1f5b3b02e5f9cc313fa339fdab08746be031ace001f797",
+  "source_files": 48,
+  "input_attitude_sha256": "c96583fd565862396b56b6955a3dfde59b01fcd56da3adeae0c90e5d8de67ec6",
+  "packages": {
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "pyerfa": "2.0.1.5",
+    "astropy": "8.0.2",
+    "astropy-iers-data": "0.2026.10.19.0.52.1",
+    "pandas": "3.0.5",
+    "matplotlib": "3.11.2",
+    "plotly": "7.1.0",
+    "pydantic": "2.13.5",
+    "orekit-jpype": "13.1.9.0"
+  },
+  "steps": {
+    "selftest": "PASSED",
+    "part1": {
+      "strict_windows": 0,
+      "first_window_min_relaxation": "2026-07-17T22:53:08.266Z"
+    },
+    "part2": {
+      "strategy": "vbar_plus",
+      "dv_total_mps": 1.183876892392054
+    },
+    "studies": "done",
+    "validate": {
+      "V1_attitude": "PASS",
+      "V2_sun_ephemeris": "PASS",
+      "V3_frames": "PASS",
+      "V4_orbit": "PASS",
+      "V5_event_grid": "PASS",
+      "V6_end_to_end_independent": "PASS",
+      "V7_orekit": "PASS"
+    },
+    "wall_time_s": 1003.0
+  }
+}

@@ -1,0 +1,42 @@
+  QUATERNION_CONVENTION     PASSED  q=(0,0,s45,c45): body X -> ref +Y; A(q) maps ref +Y -> body X
+  ATTITUDE_FILE_INTEGRITY   PASSED  14401 pts, axes 'LVLH Satellite/Target', sha256 c96583fd5658...
+  ATTITUDE_LAW_IDENTIFIED   PASSED  precession 1.200000000 deg/s, nutation 10.000000 deg, max resid 2.2e-11 rad
+  SSO_NODAL_RATE            PASSED  i = 97.59296 deg, dOmega/dt = 0.98564736 deg/day
+  CW_STM_AND_FORCED_MOTION  PASSED  STM vs ODE 3.0e-10 m; forced V-bar dV = 2nL to 3e-18
+  CW_TWO_IMPULSE_TARGETING  PASSED  arrival error 0.0e+00 m
+  EVENT_FINDER              PASSED  10 intervals to 3.6e-07 s; 63-ms blip inside a 2-s step found
+  INTERVAL_ALGEBRA          PASSED  intersect / union / complement
+  ECLIPSE_GEOMETRY          PASSED  anti-Sun point in umbra, sub-Sun point lit
+SELFTEST PASSED (9 checks, 1.8 s)
+[part1] strict windows: 0 | qualifying passes: {'Svalbard': 80, 'Bengaluru': 15, 'Wellington': 19, 'Los Angeles': 16} | min band widening 3.41 deg -> 1 window(s) | 17.58 s
+[part2] window 2026-07-17T22:53:08.266Z (Wellington, 583.9 s, minimum relaxation (illumination band widened by 3.41 deg))
+[part2] strategy vbar_plus; T1=235 T2=122; dV=1.1839 m/s; contact 553.7 s (margin 30.3 s); 21.2 s
+       scenario  strict_windows windows_by_station    first_window_open_utc  longest_feasible_span_s
+       baseline               0                                                               462.13
+      ltdn_1030               3         Svalbard:3 2026-07-11T09:30:07.941Z                   560.40
+quat_transposed               0                                                                86.05
+      att_nlerp               0                                                               461.85
+        att_law               0                                                               461.87
+     cowell_osc               0                                                               455.59
+    cowell_mean               0                                                               460.59
+    penumbra_ok               0                                                               462.13
+  true_sun_ltan               0                                                               461.19
+          u0_90               0                                                               442.78
+         u0_180               0                                                               442.88
+         u0_270               0                                                               504.76
+[studies] done in 779.5 s
+Picked up JAVA_TOOL_OPTIONS: -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Djavax.net.ssl.trustStoreType=JKS -Dhttps.proxyHost=127.0.0.1 -Dhttps.proxyPort=45849 -Dhttp.nonProxyHosts=localhost|127.0.0.1|::1|127.*|0.*|::|169.254.*|api.anthropic.com|api-staging.anthropic.com|api-pr-preview.anthropic.com|mcp-proxy.anthropic.com|mcp-proxy-staging.anthropic.com|registry.npmjs.org|jsr.io|npm.jsr.io|pypi.org|files.pythonhosted.org|index.crates.io|proxy.golang.org|host.docker.internal|10.*|172.16.*|172.17.*|172.18.*|172.19.*|172.20.*|172.21.*|172.22.*|172.23.*|172.24.*|172.25.*|172.26.*|172.27.*|172.28.*|172.29.*|172.30.*|172.31.*|192.168.*|100.64.0.0/10|*.svc.cluster.local|*.svc.cluster.local -Djdk.http.auth.tunneling.disabledSchemes= -Djdk.http.auth.proxying.disabledSchemes=
+| ID | Check | Key result | Verdict |
+|---|---|---|---|
+| V1 | Attitude law & quaternion convention | fit residual 2.2e-11 rad; SLERP vs law 0.187 deg; NLERP vs law 0.217 deg | PASS |
+| V2 | Sun: ERFA vs JPL DE421 / analytic | DE421 0.01" ; almanac 19.0" ; interpolation 4.3e-03" | PASS |
+| V3 | GCRS->ITRS vs ERFA direct & astropy | 1.0e-12 rad; ITRS pos 0.020 m; elev 4.9e-07 deg | PASS |
+| V4 | Secular J2 vs Cowell J2; LTAN flown | mean reading: +0.0239 deg/day phase drift; osculating reading: +10.98 deg/day; LTAN flown 10.50000-10.50004 h over 285 nodes | PASS |
+| V5 | Event-finder grid independence (1/2/5 s) | max diff 6.7e-04 s | PASS |
+| V6 | Independent astropy chain, top candidates | longest-span difference <= 0.71 s | PASS |
+| V7 | Orekit 13: propagation, elevation, AOS/LOS, eclipse | 0.019 m; 1.3e-06 deg; AOS/LOS 0.91 ms; penumbra 13.8 ms | PASS |
+[validation] 182.6 s
+
+real	16m43.600s
+user	25m22.284s
+sys	0m27.928s

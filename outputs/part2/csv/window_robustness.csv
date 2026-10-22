@@ -1,0 +1,4 @@
+case,window_start_utc,available_s,T1_s,T2_s,selected_strategy,vbar_dv_total_mps,vbar_sun_on_port_deg,vbar_margin_s,eligible_strategies
+selected (minimum relaxation (illumination band widened by 3.41 deg)),2026-07-17T22:53:08.266Z,583.9,235,122,vbar_plus,1.1839,"[40.9, 50.8]",30.3,"vbar_plus,sun_optimal"
+first window at a round 4 deg widening (Jul 16),2026-07-16T22:56:29.857Z,586.6,234,126,vbar_plus,1.1878,"[40.7, 50.6]",29.9,"vbar_plus,sun_optimal"
+"longest strictly-feasible span, 7.7 min (Jul 12)",2026-07-12T23:12:07.051Z,462.1,134,101,vbar_plus,1.9899,"[39.8, 49.6]",30.5,"vbar_plus,sun_optimal"

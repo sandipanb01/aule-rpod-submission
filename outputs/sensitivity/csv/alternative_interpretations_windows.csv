@@ -1,0 +1,4 @@
+scenario,window_id,station,window_open_utc,latest_start_utc,feasible_end_utc,feasible_duration_s
+ltdn_1030,W01,Svalbard,2026-07-11T09:30:07.941Z,2026-07-11T09:30:12.797Z,2026-07-11T09:39:12.797Z,544.855
+ltdn_1030,W02,Svalbard,2026-07-12T09:26:28.949Z,2026-07-12T09:26:47.149Z,2026-07-12T09:35:47.149Z,558.2
+ltdn_1030,W03,Svalbard,2026-07-14T12:30:26.829Z,2026-07-14T12:30:47.227Z,2026-07-14T12:39:47.227Z,560.397

@@ -1,0 +1,2 @@
+scenario,window_id,station,pass_aos_utc,pass_los_utc,window_open_utc,latest_start_utc,feasible_end_utc,feasible_duration_s,start_slack_s
+illumination band widened by 3.41 deg,W01,Wellington,2026-07-17T22:53:08.266Z,2026-07-17T23:02:52.211Z,2026-07-17T22:53:08.266Z,2026-07-17T22:53:52.211Z,2026-07-17T23:02:52.211Z,583.945,43.945
