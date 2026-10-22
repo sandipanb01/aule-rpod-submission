@@ -1,134 +1,183 @@
-# Aule-rpod — Docking-window analysis & RPOD final-approach design
+# Aule RPOD — Docking-Window Analysis and Terminal-Approach Design
 
-Flight-dynamics pipeline for the Aule Space mission-design assignment: find every epoch in the
-10-day mission window at which a 9-minute final approach to a 550 km SSO target satisfies the
-illumination, ground-station and eclipse constraints (Part I), then design and justify the
-approach from the first window to the 10 m hold point and docking (Part II).
+**A reproducible astrodynamics study of rendezvous, proximity operations and docking (RPOD).** It searches for a docking opportunity that satisfies orbit geometry, ground-station visibility, eclipse and solar-illumination constraints; explains when the constraints conflict; and designs a conditional terminal approach when the smallest tested relaxation makes a window available.
 
-## Answer in one paragraph
+> **The central result:** Under the baseline mission constraints, the 10-day search finds **zero valid 9-minute docking windows**. The longest strictly feasible span is **462.1 s**, which is **77.9 s short** of the required 540 s. Widening the solar-port-angle band by a minimum **3.41°** creates a **583.9 s candidate window** at Wellington on **17 July 2026**. A +V-bar approach is then designed for that *relaxed* window; it is not a solution under the original strict constraints.
 
-**As specified, the mission window contains no valid docking window.** The target's docking
-port precesses about +V-bar at exactly 1.2 deg/s with a 10 deg nutation (closed-form law
-recovered from the attitude file, residual 2e-11 rad), so the port sun angle rides a ±5–15 deg,
-5-minute oscillation on top of the orbital sun ramp. With LTAN 10:30 in July (beta ≈ −25 deg)
-the 30–60 deg band is met only on the southern day arc, which only Wellington covers; its best
-pass (12 Jul 23:09:58Z, 89 deg max elevation) offers 462 s of the required 540 s. The result is
-robust to every modelling choice tested (12 alternative readings, 7,848 orbit-phase/LTAN cases)
-and was verified against Orekit (event times to 1 ms) and an independent astropy chain. The
-earliest window under the **minimum relaxation** (illumination band widened by 3.41 deg, all
-other constraints hard) opens **17 Jul 2026 22:53:08.266 UTC (Wellington, 583.9 s)**. There, a
-**+V-bar approach** — the target holding its port on +V-bar — reaches the 10 m hold point and
-docks at 23:02:21.9 UTC for **1.184 m/s** (four impulses + 2nL compensation), keeping the Sun at
-41–51 deg on the port and ≥ 129 deg off the chaser camera during the critical phase. In 5,000
-closed-loop Monte Carlo runs every contact falls inside the translational limits of the IDSS initial-contact conditions;
-the recommended delta-v allocation is 1.80 m/s.
+This is an assumption-driven mission-analysis project, **not flight software and not flight-qualified guidance**. The report records both the model choices and the limitations that would need to be resolved before any operational use.
+
+## Results at a glance
+
+| Question | Result from the committed analysis |
+|---|---|
+| Does the baseline 10-day mission contain a valid docking window? | **No — 0 strict windows** |
+| What is the best strict candidate? | Wellington; **462.1 s** feasible span versus **540 s** required |
+| What blocks it? | Solar-port-angle constraint at the start; ground-station pass ends before a full 9-minute span is available |
+| What is the minimum tested uniform relaxation that opens a window? | Widen the illumination band by **3.41°**, keeping the other constraints hard |
+| First window under that relaxation | **2026-07-17 22:53:08 UTC**, Wellington; **583.9 s** available |
+| Selected terminal approach for that window | **+V-bar**, 25 m corridor-entry point, 10 m hold, 6 cm/s final translation |
+| Nominal modeled delta-v | **1.184 m/s** total, including continuous final-translation compensation |
+| Nominal contact timing | **553.7 s** after window opening, with **30.3 s** remaining in the candidate window |
+| Closed-loop dispersion study | **5,000 seeded Monte Carlo runs**; every modeled contact remains within the translational envelope used by the analysis |
+
+The Part II results are **conditional on the 3.41° relaxation**. The original constraints remain infeasible in this model.
+
+## See the analysis
+
+### 1. Window search and near-miss diagnosis
+
+![Docking-window candidate timeline](outputs/part1/figures/gantt_docking_windows.png)
+
+The pipeline keeps the constraints separate, finds their event times, intersects the resulting feasible intervals, and preserves per-candidate diagnostics. The result is not just “no window”: it identifies which constraint prevents the best candidate from reaching 540 seconds.
+
+![Best near-miss pass diagnostics](outputs/part1/figures/near_miss_pass_anatomy.png)
+
+### 2. Approach design and robustness
+
+![Designed terminal approach trajectory](outputs/part2/figures/approach_trajectory.png)
+
+The selected +V-bar plan uses Clohessy–Wiltshire targeting for the nominal maneuver sequence, missed-burn/passive-safety analysis, mid-course-correction slots, and a closed-loop final translation model. A separate nonlinear J2 propagation checks the planned trajectory against a higher-fidelity relative-motion model.
+
+![Monte Carlo terminal-approach results](outputs/part2/figures/monte_carlo.png)
+
+### 3. Sensitivity of feasibility to mission assumptions
+
+![Feasibility map around the specified LTAN](outputs/sensitivity/figures/feasibility_map_ltan_zoom.png)
+
+A sensitivity campaign sweeps orbit phase and local time of the ascending node (LTAN), and tests alternative readings of underspecified mission details. This matters because a window that appears or disappears under a convention change should be treated as a specification question—not silently accepted as a numerical result.
+
+## What the pipeline does
+
+1. **Reconstruct the scenario.** A validated `config/mission.yaml` is the single source for the orbit, attitude input, stations, constraints, numerical tolerances and explicitly marked assumptions.
+2. **Propagate the geometry.** Model the sun-synchronous target orbit with secular J2; use consistent time scales and Earth orientation; compute Sun direction, LVLH geometry, station look angles and Earth-shadow intersections.
+3. **Recover the target attitude law.** Read the STK attitude file, test quaternion conventions, and identify the closed-form precession/nutation law against all 14,401 samples.
+4. **Solve continuous constraints.** Convert each constraint to a signed function, bracket/refine its events, then apply interval algebra to combine ground visibility, eclipse exclusion, illumination band and the 540 s duration requirement.
+5. **Explain infeasibility.** Rank near-miss passes, quantify the deficit, sweep orbit phase/LTAN, test alternative interpretations and compute the minimum uniform illumination-band relaxation.
+6. **Design a conditional approach.** Compare approach axes; build a CW maneuver plan; evaluate camera/Sun geometry, keep-out-zone passage, missed-burn behavior, plume exposure, Monte Carlo dispersions and nonlinear J2 trajectory errors.
+7. **Validate independently.** Cross-check against Astropy/ERFA, JPL DE421 and Orekit 13, and write structured CSV/JSON products plus a run manifest.
+
+## Verification evidence
+
+The committed `outputs/validation/validation_report.md`, `outputs/run_log.txt` and `outputs/run_manifest.json` record these results for the generated run:
+
+| Check | Recorded result |
+|---|---|
+| Attitude-law identification | Maximum residual **2.2 × 10⁻¹¹ rad** across 14,401 input samples |
+| Sun direction | ERFA versus JPL DE421 difference of **0.01 arcsec** |
+| GCRS → ITRS / station geometry | Position difference **2 cm**; elevation difference about **5 × 10⁻⁷°** against independent references |
+| Event-finder grid sensitivity | Results agree within **0.7 ms** for 1 s, 2 s and 5 s grids |
+| Independent end-to-end check | Longest feasible candidate span agrees with the independent Astropy chain within **0.71 s** |
+| Orekit 13 propagation / visibility / eclipse | Position difference **1.9 cm over 20 days**; AOS/LOS within **0.91 ms**; penumbra boundaries within **13.8 ms** |
+| Nonlinear J2 check of the approach | Relative trajectory deviation no greater than about **5.1 cm** at evaluated waypoints and contact |
+| Built-in self-test | The recorded run reports **9 checks passed** |
+
+These are results of the **recorded configuration and run**, not blanket accuracy guarantees for other scenarios. The source includes a pytest suite and a built-in self-test; rerun them in your own environment before relying on a fresh code change.
 
 ## Quick start
 
+Python **3.10 or newer** is required. The commands below are for Windows PowerShell first.
+
+### Windows PowerShell
+
+```powershell
+# Run from the repository root
+py -3.10 -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+python -m pip install -e ".[dev]"
+
+# Basic checks
+python -m pytest
+aule-rpod selftest
+```
+
+If PowerShell blocks virtual-environment activation, allow it for this terminal session only, then activate again:
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+.\.venv\Scripts\Activate.ps1
+```
+
+### Linux / macOS
+
 ```bash
-make install        # pip install -e ".[dev,validation]"  (Python >= 3.10)
-make test           # 24 unit/regression tests (~10 s)
-make selftest       # built-in health check with result codes (~2 s)
-make all            # every product + provenance manifest (~16 min, dominated by the 7,848-case maps)
-make report         # typeset PDF report (pandoc + XeLaTeX) -> docs/report/report.pdf
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -e ".[dev]"
+python -m pytest
+aule-rpod selftest
 ```
 
-Individual stages: `aule-rpod part1 | part2 | studies [--quick] | validate`.
-Optional V&V data (`make data`): Orekit data directory and JPL DE421 arrays, built from public sources.
+### Run individual analysis stages
 
-## Repository layout
-
+```powershell
+aule-rpod part1             # docking windows, constraint logs and Part I products
+aule-rpod part2             # nominal approach plan for the selected relaxed window
+aule-rpod studies --quick   # quick sensitivity/interpretation study
 ```
-config/mission.yaml          single source of truth (every number; ASSUMPTIONs flagged)
-data/                        Target_Attitude_Profile.a (+ optional orekit-data/, de421/)
+
+The full study and independent-validation paths require additional runtime and data. The repository's `Makefile` documents the intended reproducibility workflow on systems with `make` available:
+
+```bash
+make install
+make test
+make selftest
+make all
+make report
+```
+
+For the Orekit/DE421 validation data setup, see `scripts/build_orekit_data.py`, `scripts/fetch_de421.py` and the validation section of the report. Full product generation is substantially slower than the quick checks because the sensitivity campaign includes 7,848 orbit-phase/LTAN cases.
+
+## Repository map
+
+```text
+config/mission.yaml        scenario parameters and explicitly marked assumptions
+data/                      target attitude profile and optional validation data
 src/aule_rpod/
-  config.py                  pydantic schema: typed, range-checked, unknown keys rejected
-  timesys.py  frames.py      UTC/TT/UT1 + leap-second guard; IAU 2006/2000A GCRS<->ITRS; STK LVLH
-  ephemeris.py               Sun: ERFA epv00 (primary), JPL DE421 + analytic (V&V)
-  orbit/                     SSO design, secular-J2 (STK J2Perturbation formulation), Cowell J2,
-                             numerically consistent mean-element fit
-  attitude/                  STK .a reader, quaternion convention (tested), SLERP/NLERP/law,
-                             closed-form precession-law identification
-  geometry/                  station look angles, ellipsoidal conical shadow model
-  events/                    sample-bracket-refine event finder (1 ms) with hidden-crossing guard;
-                             interval algebra
-  windows.py relaxation.py   docking-window logic, per-pass diagnostics, minimum relaxations
-  sensitivity.py studies.py  feasibility maps, relaxation curves, alternative interpretations
-  rpod/                      CW dynamics, waypoint plan builder, strategy trade, safety (missed
-                             burns, breakout scan), vectorised closed-loop Monte Carlo (MCC slots,
-                             final-translation controller, IDSS contact scoring), nonlinear J2 check
-  validation/                cross-checks vs astropy, JPL DE421, Orekit 13
-  viz/                       Gantt (static + interactive), analysis figures
-  part1.py part2.py cli.py   pipelines and the single entry point
-  selftest.py                fast self-test with PASSED/FAILED result codes
-tests/                       pytest suite
-scripts/                     data preparation (Orekit data, DE421) and submission packaging
-docs/report/                 report source (Markdown), PDF build script, typeset report.pdf
-outputs/                     generated products (CSV, figures, JSON summaries, manifest)
+  timesys.py, frames.py    time scales, Earth orientation and reference frames
+  orbit/                   SSO setup, secular J2 and Cowell J2 propagation
+  attitude/                STK attitude parsing, quaternion handling and law fit
+  geometry/, events/       station/eclipse geometry and continuous event finding
+  windows.py               interval intersection, candidate ranking and relaxation
+  sensitivity.py, studies.py
+                            feasibility sweeps and alternative interpretations
+  rpod/                    CW targeting, strategy trade, safety and Monte Carlo
+  validation/              independent Astropy/ERFA/Orekit checks
+  viz/                     figures and docking-window timelines
+  part1.py, part2.py, cli.py
+                            end-to-end stages and command-line entry point
+tests/                     unit and regression tests
+scripts/                   validation-data setup and submission packaging
+docs/report/               report source, build script and PDF report
+outputs/                   generated tables, plots, summaries and provenance manifest
 ```
 
-## Architecture
+## Useful output files
 
-```
-mission.yaml ─► MissionConfig (validated) ─► Scenario ─┬─ TimeSystem (UTC/TT/UT1, EOP)
-                                                       ├─ EarthOrientation (GCRS↔ITRS)
-                                                       ├─ Orbit (secular J2 | Cowell J2)
-                                                       ├─ Attitude (SLERP | NLERP | law)
-                                                       ├─ Sun (ERFA, Hermite-cached)
-                                                       └─ Stations (WGS-84)
-          every constraint = continuous g(t) >= 0  ─►  event finder (ms)  ─►  interval algebra
-                                                                 │
-              Part I: passes ∩ sunlight ∩ sun band ≥ 9 min ──────┤──► CSV / Gantt / summary
-              diagnostics, minimum relaxations, studies           │
-              Part II: window ─► strategy trade ─► CW plan ─► safety, Monte Carlo, J2 check
-```
-
-Design rules: one configuration file; every product timestamped in ISO-8601 UTC and traceable
-through `outputs/run_manifest.json` (config fingerprint, source hash, input hash, library
-versions); conventions stated once and unit-tested; every model cross-checked against an
-independent implementation; seeded randomness; the self-test must pass before products are made.
-
-## Key modelling choices (details and justification in the report)
-
-| Item | Choice |
+| Path | Why it matters |
 |---|---|
-| Orbit | a = 6928.137 km, e = 0, i = 97.593 deg (J2 sun-synchronous), node at local mean solar time 10:30 at epoch, argument of latitude 0 at epoch (ASSUMPTION) |
-| Propagation | first-order secular J2 (STK *J2Perturbation* formulation), frame = true equator & CIO of orbit epoch; Cowell J2 for sensitivity |
-| LVLH | STK definition: X radial, Z orbit normal, Y = Z × X (along-track) |
-| Quaternions | STK: scalar last, rotation reference → body; port in LVLH = R(q)·p_B |
-| Sun / Earth | ERFA epv00 (≈ JPL DE421 to 0.01"); IAU 2006/2000A with measured IERS EOP; WGS-84 |
-| Eclipse | conical umbra + penumbra on the WGS-84 ellipsoid; any occultation counts (ASSUMPTION) |
-| Stations | altitude 0 m above WGS-84 (ASSUMPTION), 5 deg mask, no refraction |
-| Part II | chaser at rest in LVLH at window start (ASSUMPTION), CW dynamics, n from the target state |
-| Monte Carlo | navigation 1 % of range (≥ 1 cm) + 1 mm/s, burns 1 % / 0.5 deg; MCC at half of each leg; final translation flown by a 2-s closed-loop controller (20-s lateral time constant, 2 mm/s deadband, 30-s Gauss-Markov navigation errors); contact scored against IDSS IDD Rev. E Table 3.3.1.1-2 |
+| `outputs/part1/part1_summary.json` | Headline baseline feasibility result and best candidate |
+| `outputs/part1/csv/docking_window_candidates.csv` | Ranked candidates and their binding constraints |
+| `outputs/part1/csv/constraint_event_log.csv` | Event-level audit trail for constraint boundaries |
+| `outputs/part1/csv/docking_windows.csv` | Strict windows; header-only when no baseline window exists |
+| `outputs/part1/csv/docking_windows_min_relaxation.csv` | Candidate window under minimum tested relaxation |
+| `outputs/part2/part2_summary.json` | Maneuver plan, timeline, delta-v and chosen strategy |
+| `outputs/part2/csv/maneuver_plan.csv` | Burn epochs and LVLH delta-v components |
+| `outputs/part2/csv/nonlinear_j2_relative_trajectory.csv` | Nonlinear trajectory cross-check |
+| `outputs/sensitivity/` | Feasibility maps, relaxation curves and alternate interpretations |
+| `outputs/validation/validation_report.md` | Human-readable independent-validation results |
+| `outputs/run_manifest.json` | Input/config fingerprints, package versions and recorded run status |
+| `docs/report/report.pdf` | Full technical report with assumptions, methods and limitations |
 
-## Verification & validation (outputs/validation)
+## Modeling choices and limitations
 
-| Check | Result |
-|---|---|
-| Attitude law vs all 14,401 samples | max residual 2.2e-11 rad; SLERP within 0.19 deg of the law |
-| Sun: ERFA vs JPL DE421 | 0.01 arcsec |
-| Frames vs ERFA direct / astropy | 1e-12 rad / 2 cm, elevation 5e-7 deg |
-| Event-finder grid independence (1/2/5 s) | < 1 ms |
-| Independent astropy chain, top candidate passes | longest feasible span within 0.7 s |
-| Orekit 13 (numerical J2, ElevationDetector, EclipseDetector) | 1.9 cm over 20 days; AOS/LOS 0.9 ms; shadow 14 ms |
-| Nonlinear J2 two-spacecraft flight of the CW plan | ≤ 5 cm at every waypoint and at contact |
+- **Orbit:** 550 km circular sun-synchronous orbit; first-order secular J2 is the baseline, with Cowell J2 variants used for sensitivity.
+- **Frames and time:** STK-compatible LVLH convention; UTC/TT/UT1 handling; IAU 2006/2000A Earth orientation and WGS-84 station/shadow geometry.
+- **Attitude:** SLERP baseline, with NLERP and the fitted closed-form law evaluated as alternatives.
+- **Window criteria:** 30°–60° Sun angle on the port, no Earth occultation under the selected eclipse interpretation, station elevation at least 5°, and 540 s continuous duration.
+- **Part II dynamics:** CW relative-motion targeting for the design, then a separate nonlinear J2 propagation check. The result assumes the initial relative state and other inputs documented in `config/mission.yaml`.
+- **Navigation/control:** Monte Carlo uncertainty levels, controller cadence, deadband and correlation time are modeling assumptions, not measured vehicle performance.
+- **Outside scope:** The analysis does not establish flight readiness, certify the chaser's attitude constraints, model all real perturbations (such as drag and third bodies), or replace mission-specific verification, thruster geometry review and operational trajectory design.
 
-## Main outputs
-
-| File | Content |
-|---|---|
-| `outputs/part1/csv/ground_station_passes.csv` | 258 passes: AOS/LOS/TCA, duration, max elevation, azimuths |
-| `outputs/part1/csv/eclipse_windows.csv` | 151 eclipses: penumbra/umbra entry & exit |
-| `outputs/part1/csv/sun_angle_timeseries_10s.csv` | sun angle on the port every 10 s, band flag, visible Sun fraction |
-| `outputs/part1/csv/state_timeline_60s.csv` | full state at the attitude epochs (Sun & port in LVLH, beta, elevations) |
-| `outputs/part1/csv/docking_windows.csv` | strict windows (header only: none exist) |
-| `outputs/part1/csv/docking_window_candidates.csv` | all 130 qualifying passes ranked, limiting constraints, minimum relaxation |
-| `outputs/part1/csv/docking_windows_min_relaxation.csv` | the window used for Part II |
-| `outputs/part1/figures/gantt_docking_windows*.{png,pdf,html}` | Gantt chart (static + interactive) |
-| `outputs/part2/csv/maneuver_plan.csv` | burns and mid-course-correction slots with UTC epochs and LVLH delta-v components |
-| `outputs/part2/csv/strategy_trade.csv` | V-bar / R-bar / H-bar / sun-optimal trade metrics |
-| `outputs/part2/analytic_dv_worksheet.json` | every intermediate CW quantity of the analytic delta-v |
-| `outputs/sensitivity/` | feasibility maps, relaxation curves, alternative interpretations |
-| `outputs/validation/validation_report.{md,json}` | V&V campaign |
-| `docs/report/report.pdf` | technical report (assumptions, interpretations, limitations, strategy, delta-v) |
+The detailed assumptions audit is in [`docs/report/report.pdf`](docs/report/report.pdf) and [`docs/report/report_source.md`](docs/report/report_source.md). Start there before changing any assumption that affects feasibility.
