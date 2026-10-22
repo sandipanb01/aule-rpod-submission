@@ -1,4 +1,4 @@
-# aule-rpod — Docking-window analysis & RPOD final-approach design
+# Aule-rpod — Docking-window analysis & RPOD final-approach design
 
 Flight-dynamics pipeline for the Aule Space mission-design assignment: find every epoch in the
 10-day mission window at which a 9-minute final approach to a 550 km SSO target satisfies the
